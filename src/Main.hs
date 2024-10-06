@@ -14,12 +14,12 @@ main = do
         let filepath = head arguments
         clauses <- parse filepath
         print $ solve clauses []
-        -- write filepath clauses
+        write filepath clauses
 
 complete :: Clauses -> Valuation -> Valuation
 complete clauses valuation =
-    let existing = map fst valuation
-        missing  = filter (`notElem` existing) (atoms clauses)
+    let biggest = fst $ maximum valuation
+        missing = [atom | atom <- [1..biggest], atom `notElem` map fst valuation]
     in valuation ++ [(atom, 1) | atom <- missing]
 
 result :: Valuation -> String

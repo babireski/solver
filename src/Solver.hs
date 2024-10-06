@@ -1,18 +1,18 @@
 module Solver where
 
-import Clause (Valuation, Clauses, Literal, complement, atom)
+import Clause (Valuation, Clauses, Literal, complement, atom, polarity)
 import Data.List (delete)
 
 solve :: Clauses -> Valuation -> Maybe Valuation
 solve clauses valuation =
-    let clauses = simplify clauses in
-    if null clauses then return valuation
+    let simplified = simplify clauses in
+    if null simplified then return valuation
     else
-        if unsatisfiable clauses then Nothing
+        if unsatisfiable simplified then Nothing
         else
-            let literal = choose clauses in
-            case solve ([literal] : clauses) ((atom literal, 1) : valuation) of
-                Nothing -> case solve ([complement literal] : clauses) ((atom literal, -1) : valuation) of
+            let literal = choose simplified in
+            case solve ([literal] : simplified) ((atom literal, polarity literal) : valuation) of
+                Nothing -> case solve ([complement literal] : simplified) ((atom literal, polarity (complement literal)) : valuation) of
                     Nothing -> Nothing
                     result  -> result
                 result  -> result
