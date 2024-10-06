@@ -13,7 +13,8 @@ main = do
     else do
         let filepath = head arguments
         clauses <- parse filepath
-        write filepath clauses
+        print $ solve clauses []
+        -- write filepath clauses
 
 complete :: Clauses -> Valuation -> Valuation
 complete clauses valuation =
