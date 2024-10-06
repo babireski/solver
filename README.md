@@ -12,7 +12,9 @@ sudo apt-get install ghc cabal-install
 
 Este projeto requer ter o comando `make` instalado. Isso pode ser feito em sistemas baseados em Ubuntu com o seguinte comando:
 
-`sudo apt-get install make`
+```
+sudo apt-get install make
+```
 
 # Uso
 
