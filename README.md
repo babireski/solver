@@ -2,16 +2,15 @@
 
 ## Haskell
 
-Este projeto requere ter o compilador de Haskell instalado. Isso pode ser feito em sistemas baseados em Ubuntu com o seguinte comando:
+Este projeto requer ter o compilador de Haskell instalado. Isso pode ser feito em sistemas baseados em Ubuntu com o seguinte comando:
 
 ```
 sudo apt-get install ghc cabal-install
-
 ```
 
 ## Make
 
-Este projeto requere ter o comando `make` instalado. Isso pode ser feito em sistemas baseados em Ubuntu com o seguinte comando:
+Este projeto requer ter o comando `make` instalado. Isso pode ser feito em sistemas baseados em Ubuntu com o seguinte comando:
 
 `sudo apt-get install make`
 
