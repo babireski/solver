@@ -13,12 +13,11 @@ main = do
     else do
         let filepath = head arguments
         clauses <- parse filepath
-        print $ solve clauses []
         write filepath clauses
 
 complete :: Clauses -> Valuation -> Valuation
 complete clauses valuation =
-    let biggest = fst $ maximum valuation
+    let biggest = maximum (atoms clauses)
         missing = [atom | atom <- [1..biggest], atom `notElem` map fst valuation]
     in valuation ++ [(atom, 1) | atom <- missing]
 
