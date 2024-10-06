@@ -24,4 +24,4 @@ Para compilar o resolvedor basta, estando na pasta-raiz do projeto, executar o c
 
 ## Execução
 
-Para executar o resolvedor basta, estando na pasta do executável, executar o comando `./solve <filepath>`, sendo `<filepath>` o caminho relativo ou absoluto para o arquivo `.cnf` de entrada. A resposta será impressa no arquivo ` <filepath>.res`.
+Para executar o resolvedor basta, estando na pasta do executável, executar o comando `./solve <filepath>`, sendo `<filepath>` o caminho relativo ou absoluto para o arquivo `.cnf` de entrada. A resposta será impressa no arquivo `<filepath>.res`.
