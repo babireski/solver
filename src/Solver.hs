@@ -7,7 +7,6 @@ import Debug.Trace (trace)
 solve :: Clauses -> Valuation -> Maybe Valuation
 solve clauses valuation =
     let (simplified, revaluation) = simplify clauses valuation in
-    -- trace (show simplified <> " " <> show revaluation) (
     if null simplified 
         then return revaluation
         else if unsatisfiable simplified 
