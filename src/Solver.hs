@@ -6,19 +6,18 @@ import Data.List (delete)
 solve :: Clauses -> Valuation -> Maybe Valuation
 solve clauses valuation =
     let simplified = simplify clauses in
-    if null simplified then return valuation
-    else
-        if unsatisfiable simplified then Nothing
-        else
-            let literal = choose simplified in
-            case solve ([literal] : simplified) ((atom literal, polarity literal) : valuation) of
-                Nothing -> case solve ([complement literal] : simplified) ((atom literal, polarity (complement literal)) : valuation) of
-                    Nothing -> Nothing
+    if null simplified 
+        then return valuation
+        else if unsatisfiable simplified 
+            then Nothing
+            else
+                let literal = choose simplified in
+                case solve ([literal] : simplified) ((atom literal, polarity literal) : valuation) of
+                    Nothing -> solve ([complement literal] : simplified) ((atom literal, polarity (complement literal)) : valuation)
                     result  -> result
-                result  -> result
 
 unsatisfiable :: Clauses -> Bool
-unsatisfiable = elem []
+unsatisfiable = any null
 
 simplify :: Clauses -> Clauses
 simplify clauses =
