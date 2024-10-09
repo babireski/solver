@@ -1,6 +1,6 @@
 module Main where
 
-import Clause (Valuation, Clauses, atoms)
+import Clause (Valuation, Clauses, atoms, (∉))
 import Data.List (sort)
 import Parser (parse)
 import Solver (solve)
@@ -18,13 +18,13 @@ main = do
 complete :: Clauses -> Valuation -> Valuation
 complete clauses valuation =
     let biggest = maximum (atoms clauses)
-        missing = [atom | atom <- [1..biggest], atom `notElem` map fst valuation]
+        missing = [atom | atom <- [1..biggest], atom ∉ map fst valuation]
     in valuation ++ [(atom, 1) | atom <- missing]
 
 result :: Valuation -> String
 result valuation = helper (sort valuation) where
     helper []          = []
-    helper [(a, v)]    = show (v * a) ++ "\n"
+    helper [(a, v)]    = show (v * a) ++ " 0\n"
     helper ((a, v):r)  = show (v * a) ++ " " ++ result r
 
 write :: String -> Clauses -> IO ()

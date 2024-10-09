@@ -20,3 +20,10 @@ atom = abs
 
 atoms :: Clauses -> [Atom]
 atoms clauses = nub (concatMap (map atom) clauses)
+
+remove :: Literal -> Clause -> Clause
+remove literal [] = []
+remove literal (x:xs) = if literal == x then remove literal xs else x : remove literal xs
+
+(∉) :: Eq a => a -> [a] -> Bool
+(∉) = notElem
